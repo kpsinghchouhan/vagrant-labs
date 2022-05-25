@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 BOX = "bento/ubuntu-20.04"
-DOMAIN = ".localhost"
+DOMAIN = ".devops.example"
 HOSTNAME = "development" + DOMAIN
 IPADDR = "192.168.44.11"
 MACADDR = "D05ADA3EE275"
