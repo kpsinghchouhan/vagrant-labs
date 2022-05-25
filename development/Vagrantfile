@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider PROVIDER do |v|
     v.clone_directory = CLONE_DIRECTORY
     v.gui = GUI
-    v.vmx["displayName"] = HOSTNAME
+    v.vmx["displayname"] = HOSTNAME
     v.vmx["numvcpus"] = CPU
     v.vmx["memsize"] = MEMORY
   end
