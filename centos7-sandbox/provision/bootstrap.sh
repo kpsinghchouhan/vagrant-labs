@@ -2,7 +2,9 @@
 
 set -e
 
+echo "Installing updates..."
 yum upgrade -y
+echo "Finished installing updates..."
 
 set +e
 
