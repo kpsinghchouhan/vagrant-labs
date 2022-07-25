@@ -39,6 +39,12 @@ ln -nfs "${DOTFILES_DIR}/starship/starship.toml" "${HOME_DIR}/.config/starship.t
 chown $USER_NAME:$USER_NAME "${HOME_DIR}/.config"
 chown -h $USER_NAME:$USER_NAME "${HOME_DIR}/.config/starship.toml"
 
+# Install Puppet related utilities
+cd /tmp
+curl -JLO 'https://pm.puppetlabs.com/pe-client-tools/2021.6.0/21.6.0/repos/deb/focal/PC1/pe-client-tools_21.6.0-1focal_amd64.deb'
+dpkg -i pe-client-tools_21.6.0-1focal_amd64.deb
+apt-get install -y pe-client-tools
+
 set +e
 
 exit 0
