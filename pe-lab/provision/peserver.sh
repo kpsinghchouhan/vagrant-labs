@@ -15,9 +15,9 @@ GPG_SIGNATURE='https://d2getqyrpmrvl0.cloudfront.net/released/2021.6.0/puppet-en
 curl -k -JLO $GPG_SIGNATURE
 gpg --verify puppet-enterprise-2021.6.0-el-7-x86_64.tar.gz.asc
 tar -xvf puppet-enterprise-2021.6.0-el-7-x86_64.tar.gz
-/tmp/puppet-enterprise-2021.6.0-el-7-x86_64 -y
+/tmp/puppet-enterprise-2021.6.0-el-7-x86_64/puppet-enterprise-installer
 sleep 5
-puppet infrastructure console_password --password=<password>
+puppet infrastructure console_password --password=mypassword
 sleep 5
 puppet agent -t
 sleep 5
