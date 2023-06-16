@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     config.vm.define machine[:NAME] do |node|
       node.vm.box = machine[:BOX]
       node.vm.hostname = machine[:HOSTNAME]
-      node.vm.synced_folder ".", "/vagrant", disables:true
+      node.vm.synced_folder ".", "/vagrant", disabled: true
           
       if PROVIDER == "vmware_desktop"
         node.vm.base_address = machine[:IPADDR]

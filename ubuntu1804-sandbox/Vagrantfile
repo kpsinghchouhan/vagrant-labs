@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.define HOSTNAME do |node|
     node.vm.box = BOX
     node.vm.hostname = HOSTNAME
-    node.vm.synced_folder ".", "/vagrant"
+    node.vm.synced_folder ".", "/vagrant", disabled: true
         
     if PROVIDER == "vmware_desktop"
       node.vm.base_address = IPADDR
