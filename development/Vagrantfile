@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = HOSTNAME
   config.vm.base_address = IPADDR
   config.vm.base_mac = MACADDR
-  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
   
   config.vm.provider PROVIDER do |v|
     v.clone_directory = CLONE_DIRECTORY
