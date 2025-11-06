@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require './variables.rb'
+
+Vagrant.configure("2") do |config|
+
+  MACHINES.each do |machine|
+
+    config.vm.define machine[:NAME] do |node|
+      node.vm.box = machine[:BOX]
+      node.vm.hostname = machine[:HOSTNAME]
+      node.vm.synced_folder ".", "/vagrant", disabled: true
+          
+      if PROVIDER == "vmware_desktop"
+        node.vm.base_address = machine[:IPADDR]
+        node.vm.base_mac = machine[:MACADDR]
+      elsif PROVIDER == "virtualbox"
+        node.vm.network "private_network", ip: machine[:IPADDR], netmaks: NETMASK
+      end
+      
+      node.vm.provider PROVIDER do |v|
+        v.gui = machine[:GUI]
+        if PROVIDER == "vmware_desktop"
+          v.clone_directory = CLONE_DIRECTORY
+          v.vmx["displayname"] = machine[:HOSTNAME]
+          v.vmx["numvcpus"] = machine[:CPU]
+          v.vmx["memsize"] = machine[:MEMORY]
+        elsif PROVIDER == "virtualbox"
+          v.name = machine[:HOSTNAME]
+          v.cpus = machine[:CPU]
+          v.memory = machine[:MEMORY]
+        end
+      end
+
+      node.vm.provision "shell", path: "provision/#{machine[:NAME]}.sh"
+    end
+
+    config.vm.provision "shell", path: "provision/hosts.sh", args: [machine[:NAME], machine[:HOSTNAME], machine[:IPADDR]]
+
+  end
+
+end
