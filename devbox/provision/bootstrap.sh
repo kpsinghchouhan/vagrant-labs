@@ -5,7 +5,7 @@ set -e
 apt update -y
 apt dist-upgrade -y
 
-apt-get install -y git
+apt-get install -y git gh
 
 #Clone dotfile repo
 DOTFILES_REPO="https://github.com/kpsinghchouhan/dotfiles.git"
@@ -32,18 +32,27 @@ chown -h $USER_NAME:$USER_NAME "${HOME_DIR}/.gitconfig"
 # Install Starship shell prompt and configure
 curl -sS https://starship.rs/install.sh | sh /dev/stdin -y
 echo " " >> "${HOME_DIR}/.bashrc"
-echo "# Starship shell prompt setup " >> "${HOME_DIR}/.bashrc"
+echo "# Starship shell prompt setup" >> "${HOME_DIR}/.bashrc"
 echo 'eval "$(starship init bash)"' >> "${HOME_DIR}/.bashrc"
 mkdir -p "${HOME_DIR}/.config"
 ln -nfs "${DOTFILES_DIR}/starship/starship.toml" "${HOME_DIR}/.config/starship.toml"
 chown $USER_NAME:$USER_NAME "${HOME_DIR}/.config"
 chown -h $USER_NAME:$USER_NAME "${HOME_DIR}/.config/starship.toml"
 
-# Install Puppet related utilities
-cd /tmp
-curl -JLO 'https://pm.puppetlabs.com/pe-client-tools/2021.6.0/21.6.0/repos/deb/focal/PC1/pe-client-tools_21.6.0-1focal_amd64.deb'
-dpkg -i pe-client-tools_21.6.0-1focal_amd64.deb
-apt-get install -y pe-client-tools
+# Install Ansible
+apt install -y software-properties-common
+add-apt-repository -y ppa:ansible/ansible
+apt install -y ansible
+apt install -y python3-pip
+apt install -y python3-venv
+# Install Ansible Dev tools
+mkdir "${HOME_DIR}/.ansible-dev-tools"
+cd "${HOME_DIR}/.ansible-dev-tools"
+python3 -m venv .venv
+source .venv/bin/activate
+pip install ansible-dev-tools
+echo "# Add Ansible dev tools to path" >> "${HOME_DIR}/.bashrc"
+echo 'PATH="${PATH}:${HOME_DIR}/.ansible-dev-tools/.venv/bin"' >> "${HOME_DIR}/.bashrc"
 
 set +e
 
