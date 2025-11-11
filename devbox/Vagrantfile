@@ -5,21 +5,33 @@ require './variables.rb'
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = BOX
-  
-  config.vm.hostname = HOSTNAME
-  config.vm.base_address = IPADDR
-  config.vm.base_mac = MACADDR
-  config.vm.synced_folder ".", "/vagrant", disabled: true
-  
-  config.vm.provider PROVIDER do |v|
-    v.clone_directory = CLONE_DIRECTORY
-    v.gui = GUI
-    v.vmx["displayname"] = HOSTNAME
-    v.vmx["numvcpus"] = CPU
-    v.vmx["memsize"] = MEMORY
+  config.vm.define HOSTNAME do |node|
+    node.vm.box = BOX
+    node.vm.hostname = HOSTNAME
+    node.vm.synced_folder ".", "/vagrant", disabled: true
+
+    if PROVIDER == "vmware_desktop"
+      node.vm.base_address = IPADDR
+      node.vm.base_mac = MACADDR
+    elsif PROVIDER == "virtualbox"
+      node.vm.network "private_network", ip: IPADDR, netmaks: NETMASK
+    end
+
+    node.vm.provider PROVIDER do |v|
+      v.gui = GUI
+      if PROVIDER == "vmware_desktop"
+        v.clone_directory = CLONE_DIRECTORY
+        v.vmx["displayname"] = HOSTNAME
+        v.vmx["numvcpus"] = CPU
+        v.vmx["memsize"] = MEMORY
+      elsif PROVIDER == "virtualbox"
+        v.name = HOSTNAME
+        v.cpus = CPU
+        v.memory = MEMORY
+      end
+    end
+
+    node.vm.provision "shell", path: "provision/bootstrap.sh"
   end
-  
-  config.vm.provision "shell", path: "provision/bootstrap.sh"
 
 end

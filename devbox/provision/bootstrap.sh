@@ -3,11 +3,10 @@
 set -e
 
 apt update -y
-apt dist-upgrade -y
 
 apt-get install -y git gh
 
-#Clone dotfile repo
+# Clone dotfile repo
 DOTFILES_REPO="https://github.com/kpsinghchouhan/dotfiles.git"
 USER_NAME="vagrant"
 HOME_DIR="/home/${USER_NAME}"
@@ -31,8 +30,8 @@ chown -h $USER_NAME:$USER_NAME "${HOME_DIR}/.gitconfig"
 
 # Install Starship shell prompt and configure
 curl -sS https://starship.rs/install.sh | sh /dev/stdin -y
-echo " " >> "${HOME_DIR}/.bashrc"
-echo "# Starship shell prompt setup" >> "${HOME_DIR}/.bashrc"
+echo "" >> "${HOME_DIR}/.bashrc"
+echo "# setup Starship shell prompt" >> "${HOME_DIR}/.bashrc"
 echo 'eval "$(starship init bash)"' >> "${HOME_DIR}/.bashrc"
 mkdir -p "${HOME_DIR}/.config"
 ln -nfs "${DOTFILES_DIR}/starship/starship.toml" "${HOME_DIR}/.config/starship.toml"
@@ -45,14 +44,24 @@ add-apt-repository -y ppa:ansible/ansible
 apt install -y ansible
 apt install -y python3-pip
 apt install -y python3-venv
+apt install -y libonig-dev
 # Install Ansible Dev tools
 mkdir "${HOME_DIR}/.ansible-dev-tools"
 cd "${HOME_DIR}/.ansible-dev-tools"
 python3 -m venv .venv
 source .venv/bin/activate
 pip install ansible-dev-tools
-echo "# Add Ansible dev tools to path" >> "${HOME_DIR}/.bashrc"
-echo 'PATH="${PATH}:${HOME_DIR}/.ansible-dev-tools/.venv/bin"' >> "${HOME_DIR}/.bashrc"
+chown -R $USER_NAME:$USER_NAME "${HOME_DIR}/.ansible-dev-tools"
+echo "" >> "${HOME_DIR}/.bashrc"
+echo "# add Ansible dev tools to path" >> "${HOME_DIR}/.bashrc"
+echo "PATH=${HOME_DIR}/.ansible-dev-tools/.venv/bin:${PATH}" >> "${HOME_DIR}/.bashrc"
+
+apt dist-upgrade -y
+
+# Reboot the system if needed
+if [[ -d /var/run/needrestart ]]; then
+    shutdown -r +1
+fi
 
 set +e
 
