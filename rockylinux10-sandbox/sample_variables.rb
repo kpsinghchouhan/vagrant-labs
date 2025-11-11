@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-BOX = "bento/ubuntu-22.04"
+BOX = "bento/rockylinux-10"
 DOMAIN = ".devops.example"
-HOSTNAME = "ubuntu2204-sandbox" + DOMAIN
+HOSTNAME = "rockylinux10-sandbox" + DOMAIN
 PROVIDER = "vmware_desktop" # Supported values are vmware_desktop and virtualbox
 # Provide IP address value to reserve static IP address
 # To use VMware NAT adapter, provide values between 192.168.44.[3-127]

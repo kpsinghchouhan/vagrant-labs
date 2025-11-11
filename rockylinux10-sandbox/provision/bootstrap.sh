@@ -3,8 +3,7 @@
 set -e
 
 echo "Installing updates..."
-apt update -y
-apt dist-upgrade -y
+yum upgrade -y
 echo "Finished installing updates..."
 
 set +e
