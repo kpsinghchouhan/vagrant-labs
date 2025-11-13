@@ -58,7 +58,7 @@ echo "PATH=${HOME_DIR}/.ansible-dev-tools/.venv/bin:${PATH}" >> "${HOME_DIR}/.ba
 
 apt dist-upgrade -y
 
-# Reboot the system if needed
+# Schedule a restart if needed
 if [[ -d /var/run/needrestart ]]; then
     shutdown -r +1
 fi

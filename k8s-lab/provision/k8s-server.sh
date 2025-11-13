@@ -3,10 +3,13 @@
 set -e
 
 echo "Installing updates..."
-yum upgrade -y
+apt update -y
+apt dist-upgrade -y
 echo "Finished installing updates..."
 # Schedule a restart if needed
-needs-restarting -r || shutdown -r +1
+if [[ -d /var/run/needrestart ]]; then
+    shutdown -r +1
+fi
 
 set +e
 
