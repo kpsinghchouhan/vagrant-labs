@@ -7,7 +7,7 @@ PROVIDER = "vmware_desktop" # Supported values are vmware_desktop and virtualbox
 NETMASK = "255.255.255.0" # Required if PROVIDER is virtualbox
 MACHINES = [{NAME: "pe-server",
             HOSTNAME: "pe-server#{DOMAIN}",
-            BOX: "bento/ubuntu-2404",
+            BOX: "bento/ubuntu-24.04",
             CPU: "2",
             MEMORY: "4096",
             IPADDR: "192.168.44.51",
