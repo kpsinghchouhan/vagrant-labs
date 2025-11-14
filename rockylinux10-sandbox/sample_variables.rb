@@ -10,7 +10,7 @@ PROVIDER = "vmware_desktop" # Supported values are vmware_desktop and virtualbox
 # provide values between 192.168.*.[3-127]
 # To use Virtualbox, provide a valid 192.168.*.* address with correct subnetmask
 IPADDR = "192.168.44.24" # Use it to reserve static ip address
-MACADDR = "16C861079196" # Required if PROVIDER is vmware_desktop
+MACADDR = "DCEFBC4EA4AB" # Required if PROVIDER is vmware_desktop
 NETMASK = "255.255.255.0" # Required if PROVIDER is virtualbox
 CLONE_DIRECTORY = "C:\\VMs" # Required if PROVIDER is vmware_desktop
 CPU = "2"
