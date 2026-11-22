@@ -10,6 +10,9 @@ Edit it according to your need and run following command to bring up the environ
 vagrant up
 ```
 
+Environments have been divided into two categories. Stand-alone environments and multi-VM environments. Stand-alone VMs get created with all necessary softwares pre-installed. Multi-VM environments do not contain the respective sofwares. To install respective softwares on those environments, first create ansible-controller VM and use Ansible playbooks to apply necessary configurations.
+
+
 Currently available environments.
 
 ### Single VM Environments
@@ -25,28 +28,28 @@ Currently available environments.
 
 ### Multi-VM Environments
 
-For multi-VM environments, `vagrant up` will create all the VMs listed in the table. You can also bring up a specific VM by running `vagrant up <hostname>`.
+For multi-VM environments, first change directory to the respective environment's folder. Then, `vagrant up` will create all the VMs listed in the table. You can also bring up a specific VM by running `vagrant up <hostname>`.
 
 #### Ansible Lab
 
-| Hostname | Box | IP Address |
-| -------- | --- | ------------ |
-| ansible-control-server | bento/rockylinux-10 | 192.168.44.31 |
-| ansible-host-01 | bento/rockylinux-10 | 192.168.44.32 |
-| ansible-host-02 | bento/ubuntu-24.04 | 192.168.44.33 |
+| Hostname | Box | Role | IP Address |
+| -------- | --- | ---- | ---------- |
+| ansible-control-server | bento/rockylinux-10 | Ansible Controller VM | 192.168.44.31 |
+| ansible-host-01 | bento/rockylinux-10 | Ansible Managed Host 01 | 192.168.44.32 |
+| ansible-host-02 | bento/ubuntu-24.04 | Ansible Managed Host 02 |192.168.44.33 |
 
 #### Kubernetes (k8s) Lab
 
-| Hostname | Box | IP Address |
-| -------- | --- | ------------ |
-| k8s-server | bento/ubuntu-24.04 | 192.168.44.41 |
-| k8s-node-0 | bento/ubuntu-24.04 | 192.168.44.42 |
-| k8s-node-1 | bento/ubuntu-24.04 | 192.168.44.43 |
+| Hostname | Box | Role | IP Address |
+| -------- | --- | ---- | ---------- |
+| k8s-server | bento/ubuntu-24.04 | Kubernetes Server | 192.168.44.41 |
+| k8s-node-0 | bento/ubuntu-24.04 | Kubernetes Node 01 | 192.168.44.42 |
+| k8s-node-1 | bento/ubuntu-24.04 | Kubernetes Node 02 | 192.168.44.43 |
 
 #### Puppet Enterprise (PE) Lab
 
-| Hostname | Box | IP Address |
-| -------- | --- | ------------ |
-| pe-server | bento/ubuntu-24.04 | 192.168.44.51 |
-| pe-host-01 | bento/ubuntu-24.04 | 192.168.44.52 |
-| pe-host-02 | bento/rockylinux-10 | 192.168.44.53 |
+| Hostname | Box | Role | IP Address |
+| -------- | --- | ---- | ---------- |
+| pe-server | bento/ubuntu-24.04 | Puppet Enterprise Server | 192.168.44.51 |
+| pe-host-01 | bento/ubuntu-24.04 | Puppet Managed Host 01 | 192.168.44.52 |
+| pe-host-02 | bento/rockylinux-10 | Puppet Managed Host 02 | 192.168.44.53 |
