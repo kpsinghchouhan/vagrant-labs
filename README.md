@@ -17,8 +17,8 @@ Currently available environments.
 | Environment | Box | IP Address |
 | ----------- | --- | ------------ |
 | devbox | bento/ubuntu-24.04 | 192.168.44.11 |
-| ubuntu2204-sandbox | bento/ubuntu-22.04 | 192.168.44.21 |
 | ubuntu2404-sandbox | bento/ubuntu-24.04 | 192.168.44.22 |
+| ubuntu2604-sandbox | bento/ubuntu-26.04 | 192.168.44.26 |
 | rockylinux9-sandbox | bento/rockylinux-9 | 192.168.44.23 |
 | rockylinux10-sandbox | bento/rockylinux-10 | 192.168.44.24 |
 | docker-sandbox | bento/ubuntu-24.04 | 192.168.44.25 |
