@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-BOX = "bento/ubuntu-24.04"
+BOX = "bento/ubuntu-26.04"
 DOMAIN = ".devops.example"
 HOSTNAME = "devbox" + DOMAIN
 PROVIDER = "vmware_desktop" # Supported values are vmware_desktop and virtualbox

@@ -17,15 +17,14 @@ Currently available environments.
 
 ### Single VM Environments
 
-| Environment | Box | Role | IP Address |
-| ----------- | --- | ---- |------------ |
-| devbox | bento/ubuntu-24.04 | Dev VM | 192.168.44.11 |
-| ansible-controller | bento/ubuntu-24.04 | Ansible Controller VM | 192.168.44.12 |
-| ubuntu2204-sandbox | bento/ubuntu-22.04 | Ubuntu 22.04 Sandbox | 192.168.44.21 |
-| ubuntu2404-sandbox | bento/ubuntu-24.04 | Ubuntu 24.04 Sandbox | 192.168.44.22 |
-| rockylinux9-sandbox | bento/rockylinux-9 | Rocky Linux 9 Sandbox |192.168.44.23 |
-| rockylinux10-sandbox | bento/rockylinux-10 | Rocky Linux 10 Sandbox | 192.168.44.24 |
-| docker-sandbox | bento/ubuntu-24.04 | Docker Sandbox | 192.168.44.25 |
+| Environment | Box | IP Address |
+| ----------- | --- | ------------ |
+| devbox | bento/ubuntu-26.04 | 192.168.44.11 |
+| ubuntu2404-sandbox | bento/ubuntu-24.04 | 192.168.44.22 |
+| ubuntu2604-sandbox | bento/ubuntu-26.04 | 192.168.44.26 |
+| rockylinux9-sandbox | bento/rockylinux-9 | 192.168.44.23 |
+| rockylinux10-sandbox | bento/rockylinux-10 | 192.168.44.24 |
+| docker-sandbox | bento/ubuntu-24.04 | 192.168.44.25 |
 
 ### Multi-VM Environments
 
